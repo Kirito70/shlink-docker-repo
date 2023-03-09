@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  shlink: 
+    image: shlinkio/shlink:stable
+    env_file: .env
+    ports:
+      - 8089:8080
+    container_name: short_linker
+    networks:
+      - mysql
+      - redis
+  shlink-web:
+    image: shlinkio/shlink-web-client
+    ports:
+      - 3012:80
+    container_name: short_linker_web
+
+
+networks:
+  mysql:
+    external: true
+  redis:
+    external: true
